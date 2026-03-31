@@ -3,82 +3,352 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nava Shikashana - Learning App</title>
+  <title>Navashikshana || M2I Trainings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav class="navbar">
-    <div class="nav-brand" onclick="showView('home')">
-      <span class="logo">NS</span>
-      <span class="brand-text">Nava Shikashana</span>
-    </div>
-    <div class="nav-links">
-      <a href="#" onclick="showView('home')" class="nav-link active" data-view="home">Courses</a>
-      <a href="#" onclick="showView('progress')" class="nav-link" data-view="progress">My Progress</a>
-    </div>
-  </nav>
 
-  <!-- Home / Course Catalog -->
-  <section id="view-home" class="view active">
-    <div class="hero">
-      <h1>Learn Something New Today</h1>
-      <p>Free interactive courses on web development, design, and programming fundamentals.</p>
-      <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Search courses..." oninput="filterCourses()" />
-      </div>
-    </div>
-    <div class="container">
-      <div class="section-header">
-        <h2>All Courses</h2>
-        <div class="filter-tags">
-          <button class="tag active" onclick="filterByTag('all', this)">All</button>
-          <button class="tag" onclick="filterByTag('beginner', this)">Beginner</button>
-          <button class="tag" onclick="filterByTag('intermediate', this)">Intermediate</button>
-          <button class="tag" onclick="filterByTag('advanced', this)">Advanced</button>
+  <!-- ============ LOGIN PAGE ============ -->
+  <div id="page-login" class="page active">
+    <header class="login-header">
+      <div class="login-header-inner">
+        <div class="logo-area">
+          <div class="logo-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="logo-text">
+            <span class="logo-title">Navashikshana</span>
+            <span class="logo-sub">M2I Trainings</span>
+          </div>
+        </div>
+        <div class="tagline">Enable Sustainable Enterprises</div>
+        <div class="header-contact">
+          <span><i class="fas fa-envelope"></i> contact@m2iconsulting.com</span>
+          <span><i class="fas fa-phone"></i> +91 129 4000 995</span>
         </div>
       </div>
-      <div id="course-grid" class="course-grid"></div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Course Detail -->
-  <section id="view-course" class="view">
-    <div class="container">
-      <button class="back-btn" onclick="showView('home')">&larr; Back to Courses</button>
-      <div id="course-detail"></div>
-    </div>
-  </section>
+    <main class="login-main">
+      <div class="login-hero">
+        <div class="hero-content">
+          <h1>Empowering Workforce Through Learning</h1>
+          <p>Access your training modules, track progress, and build skills that drive sustainable growth.</p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="stat-num">500+</span>
+              <span class="stat-txt">Training Modules</span>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-num">10K+</span>
+              <span class="stat-txt">Learners</span>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-num">50+</span>
+              <span class="stat-txt">Organizations</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- Lesson View -->
-  <section id="view-lesson" class="view">
-    <div class="container">
-      <button class="back-btn" id="back-to-course">&larr; Back to Course</button>
-      <div id="lesson-content"></div>
-    </div>
-  </section>
+      <div class="login-form-area">
+        <div class="login-box">
+          <h2>SIGN IN</h2>
+          <p class="login-subtitle">Access your training dashboard</p>
+          <div id="login-error" class="alert alert-danger" style="display:none;"></div>
+          <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label for="username"><i class="fas fa-user"></i> Username / Employee ID</label>
+              <input type="text" id="username" name="username" placeholder="Enter your username" required />
+            </div>
+            <div class="form-group">
+              <label for="password"><i class="fas fa-lock"></i> Password</label>
+              <input type="password" id="password" name="password" placeholder="Enter your password" required />
+            </div>
+            <button type="submit" class="btn-signin">
+              <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+          </form>
+          <a href="#" class="forgot-link" onclick="showForgotPassword(event)">Forgot password?</a>
+          <hr class="divider" />
+          <p class="login-footer-text">&copy; Prime M2i Consulting Pvt. Ltd. All rights reserved.</p>
+        </div>
+      </div>
+    </main>
+  </div>
 
-  <!-- Quiz View -->
-  <section id="view-quiz" class="view">
-    <div class="container">
-      <button class="back-btn" id="back-to-course-from-quiz">&larr; Back to Course</button>
-      <div id="quiz-content"></div>
-    </div>
-  </section>
+  <!-- ============ FORGOT PASSWORD ============ -->
+  <div id="page-forgot" class="page">
+    <header class="login-header">
+      <div class="login-header-inner">
+        <div class="logo-area" onclick="showPage('login')" style="cursor:pointer">
+          <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="logo-text">
+            <span class="logo-title">Navashikshana</span>
+            <span class="logo-sub">M2I Trainings</span>
+          </div>
+        </div>
+        <div class="tagline">Enable Sustainable Enterprises</div>
+      </div>
+    </header>
+    <main class="login-main center-form">
+      <div class="login-box" style="max-width:420px">
+        <h2>FORGOT PASSWORD</h2>
+        <p class="login-subtitle">Enter your registered email to reset password</p>
+        <form onsubmit="handleForgot(event)">
+          <div class="form-group">
+            <label for="reset-email"><i class="fas fa-envelope"></i> Email Address</label>
+            <input type="email" id="reset-email" placeholder="your.email@company.com" required />
+          </div>
+          <button type="submit" class="btn-signin"><i class="fas fa-paper-plane"></i> Send Reset Link</button>
+        </form>
+        <a href="#" class="forgot-link" onclick="showPage('login'); return false;">
+          <i class="fas fa-arrow-left"></i> Back to Sign In
+        </a>
+      </div>
+    </main>
+  </div>
 
-  <!-- Progress View -->
-  <section id="view-progress" class="view">
-    <div class="container">
-      <h2 class="section-title">My Learning Progress</h2>
-      <div id="progress-content"></div>
-    </div>
-  </section>
+  <!-- ============ DASHBOARD ============ -->
+  <div id="page-dashboard" class="page">
+    <!-- Top Nav -->
+    <nav class="topnav">
+      <div class="topnav-inner">
+        <div class="topnav-left">
+          <div class="logo-area">
+            <div class="logo-icon sm"><i class="fas fa-graduation-cap"></i></div>
+            <span class="logo-title sm">Navashikshana</span>
+          </div>
+        </div>
+        <div class="topnav-links">
+          <a href="#" class="tnav-link active" data-section="dashboard" onclick="switchSection('dashboard', this)">
+            <i class="fas fa-th-large"></i> Dashboard
+          </a>
+          <a href="#" class="tnav-link" data-section="courses" onclick="switchSection('courses', this)">
+            <i class="fas fa-book"></i> My Courses
+          </a>
+          <a href="#" class="tnav-link" data-section="reports" onclick="switchSection('reports', this)">
+            <i class="fas fa-chart-bar"></i> Reports
+          </a>
+          <a href="#" class="tnav-link" data-section="certificates" onclick="switchSection('certificates', this)">
+            <i class="fas fa-certificate"></i> Certificates
+          </a>
+        </div>
+        <div class="topnav-right">
+          <div class="user-menu" onclick="toggleUserMenu()">
+            <div class="user-avatar" id="user-avatar">NM</div>
+            <span id="user-display-name">NM3741</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="user-dropdown" id="user-dropdown">
+            <a href="#" onclick="switchSection('profile', this); return false;"><i class="fas fa-user"></i> My Profile</a>
+            <a href="#" onclick="handleLogout(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-  <!-- Toast Notification -->
+    <div class="dashboard-body">
+      <!-- === Dashboard Section === -->
+      <section id="sec-dashboard" class="section active">
+        <div class="container">
+          <div class="welcome-banner">
+            <div class="welcome-text">
+              <h1 id="welcome-name">Welcome back, NM3741!</h1>
+              <p>Continue your learning journey. You're making great progress!</p>
+            </div>
+            <div class="welcome-icon"><i class="fas fa-rocket"></i></div>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-card-icon blue"><i class="fas fa-book-open"></i></div>
+              <div class="stat-card-info">
+                <span class="stat-card-val" id="stat-enrolled">0</span>
+                <span class="stat-card-label">Enrolled Courses</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon green"><i class="fas fa-check-circle"></i></div>
+              <div class="stat-card-info">
+                <span class="stat-card-val" id="stat-completed">0</span>
+                <span class="stat-card-label">Completed</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon orange"><i class="fas fa-clock"></i></div>
+              <div class="stat-card-info">
+                <span class="stat-card-val" id="stat-hours">0</span>
+                <span class="stat-card-label">Hours Spent</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon purple"><i class="fas fa-trophy"></i></div>
+              <div class="stat-card-info">
+                <span class="stat-card-val" id="stat-certs">0</span>
+                <span class="stat-card-label">Certificates</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div class="col-main">
+              <div class="panel">
+                <div class="panel-header">
+                  <h3>Continue Learning</h3>
+                </div>
+                <div id="continue-learning"></div>
+              </div>
+            </div>
+            <div class="col-side">
+              <div class="panel">
+                <div class="panel-header"><h3>Announcements</h3></div>
+                <div class="announcement-list">
+                  <div class="announcement-item">
+                    <div class="ann-dot blue"></div>
+                    <div>
+                      <strong>New Course Available</strong>
+                      <p>Advanced Data Analytics module is now live.</p>
+                      <span class="ann-date">Mar 28, 2026</span>
+                    </div>
+                  </div>
+                  <div class="announcement-item">
+                    <div class="ann-dot green"></div>
+                    <div>
+                      <strong>Maintenance Window</strong>
+                      <p>Scheduled maintenance on Apr 5, 2:00 AM IST.</p>
+                      <span class="ann-date">Mar 25, 2026</span>
+                    </div>
+                  </div>
+                  <div class="announcement-item">
+                    <div class="ann-dot orange"></div>
+                    <div>
+                      <strong>Certificate Policy Update</strong>
+                      <p>Certificates now require 80% quiz score.</p>
+                      <span class="ann-date">Mar 20, 2026</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-header"><h3>Upcoming Deadlines</h3></div>
+                <div class="deadline-list">
+                  <div class="deadline-item">
+                    <div class="deadline-date"><span>05</span>Apr</div>
+                    <div><strong>Safety Compliance Training</strong><p>Mandatory completion</p></div>
+                  </div>
+                  <div class="deadline-item">
+                    <div class="deadline-date"><span>12</span>Apr</div>
+                    <div><strong>Leadership Essentials</strong><p>Module 3 due</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- === Courses Section === -->
+      <section id="sec-courses" class="section">
+        <div class="container">
+          <div class="sec-header">
+            <h2>My Courses</h2>
+            <div class="search-filter">
+              <input type="text" id="course-search" placeholder="Search courses..." oninput="renderCourseList()" />
+              <select id="course-filter" onchange="renderCourseList()">
+                <option value="all">All Levels</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </div>
+          </div>
+          <div id="course-grid" class="course-grid"></div>
+        </div>
+      </section>
+
+      <!-- === Course Detail === -->
+      <section id="sec-course-detail" class="section">
+        <div class="container" id="course-detail-content"></div>
+      </section>
+
+      <!-- === Lesson View === -->
+      <section id="sec-lesson" class="section">
+        <div class="container" id="lesson-content"></div>
+      </section>
+
+      <!-- === Quiz View === -->
+      <section id="sec-quiz" class="section">
+        <div class="container" id="quiz-content"></div>
+      </section>
+
+      <!-- === Reports Section === -->
+      <section id="sec-reports" class="section">
+        <div class="container">
+          <h2 class="sec-title">My Learning Reports</h2>
+          <div id="reports-content"></div>
+        </div>
+      </section>
+
+      <!-- === Certificates Section === -->
+      <section id="sec-certificates" class="section">
+        <div class="container">
+          <h2 class="sec-title">My Certificates</h2>
+          <div id="certificates-content"></div>
+        </div>
+      </section>
+
+      <!-- === Profile Section === -->
+      <section id="sec-profile" class="section">
+        <div class="container">
+          <h2 class="sec-title">My Profile</h2>
+          <div id="profile-content"></div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="dashboard-footer">
+      <p>&copy; 2026 Prime M2i Consulting Pvt. Ltd. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+    </footer>
+  </div>
+
+  <!-- ============ CONTROL PANEL LOGIN ============ -->
+  <div id="page-cpanel" class="page">
+    <header class="login-header">
+      <div class="login-header-inner">
+        <div class="logo-area" onclick="showPage('login')" style="cursor:pointer">
+          <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="logo-text">
+            <span class="logo-title">Master M2i Trainings</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="login-main center-form">
+      <div class="login-box cpanel-box">
+        <h2>CONTROL PANEL - SIGN IN</h2>
+        <p class="login-subtitle">Admin access only</p>
+        <form onsubmit="handleCpanelLogin(event)">
+          <div class="form-group">
+            <label for="cp-user"><i class="fas fa-user-shield"></i> Admin Username</label>
+            <input type="text" id="cp-user" placeholder="Enter admin username" required />
+          </div>
+          <div class="form-group">
+            <label for="cp-pass"><i class="fas fa-lock"></i> Password</label>
+            <input type="password" id="cp-pass" placeholder="Enter password" required />
+          </div>
+          <button type="submit" class="btn-signin"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+        </form>
+        <a href="#" class="forgot-link" onclick="showForgotPassword(event)">Forgot password?</a>
+        <hr class="divider" />
+        <p class="login-footer-text">&copy; Prime M2i Consulting Pvt Ltd</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast -->
   <div id="toast" class="toast"></div>
-
-  <footer>
-    <p>Nava Shikashana &copy; 2026 &mdash; Learn, Grow, Succeed</p>
-  </footer>
 
   <script src="app.js"></script>
 </body>
