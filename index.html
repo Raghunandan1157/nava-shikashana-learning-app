@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nava Shikashana - Learning App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand" onclick="showView('home')">
+      <span class="logo">NS</span>
+      <span class="brand-text">Nava Shikashana</span>
+    </div>
+    <div class="nav-links">
+      <a href="#" onclick="showView('home')" class="nav-link active" data-view="home">Courses</a>
+      <a href="#" onclick="showView('progress')" class="nav-link" data-view="progress">My Progress</a>
+    </div>
+  </nav>
+
+  <!-- Home / Course Catalog -->
+  <section id="view-home" class="view active">
+    <div class="hero">
+      <h1>Learn Something New Today</h1>
+      <p>Free interactive courses on web development, design, and programming fundamentals.</p>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search courses..." oninput="filterCourses()" />
+      </div>
+    </div>
+    <div class="container">
+      <div class="section-header">
+        <h2>All Courses</h2>
+        <div class="filter-tags">
+          <button class="tag active" onclick="filterByTag('all', this)">All</button>
+          <button class="tag" onclick="filterByTag('beginner', this)">Beginner</button>
+          <button class="tag" onclick="filterByTag('intermediate', this)">Intermediate</button>
+          <button class="tag" onclick="filterByTag('advanced', this)">Advanced</button>
+        </div>
+      </div>
+      <div id="course-grid" class="course-grid"></div>
+    </div>
+  </section>
+
+  <!-- Course Detail -->
+  <section id="view-course" class="view">
+    <div class="container">
+      <button class="back-btn" onclick="showView('home')">&larr; Back to Courses</button>
+      <div id="course-detail"></div>
+    </div>
+  </section>
+
+  <!-- Lesson View -->
+  <section id="view-lesson" class="view">
+    <div class="container">
+      <button class="back-btn" id="back-to-course">&larr; Back to Course</button>
+      <div id="lesson-content"></div>
+    </div>
+  </section>
+
+  <!-- Quiz View -->
+  <section id="view-quiz" class="view">
+    <div class="container">
+      <button class="back-btn" id="back-to-course-from-quiz">&larr; Back to Course</button>
+      <div id="quiz-content"></div>
+    </div>
+  </section>
+
+  <!-- Progress View -->
+  <section id="view-progress" class="view">
+    <div class="container">
+      <h2 class="section-title">My Learning Progress</h2>
+      <div id="progress-content"></div>
+    </div>
+  </section>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <footer>
+    <p>Nava Shikashana &copy; 2026 &mdash; Learn, Grow, Succeed</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
